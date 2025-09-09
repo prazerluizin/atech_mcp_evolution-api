@@ -1,0 +1,13 @@
+{
+  "evolutionUrl": "https://your-evolution-api.com",
+  "evolutionApiKey": "your-global-api-key",
+  "server": {
+    "name": "my-evolution-mcp",
+    "version": "1.0.0"
+  },
+  "http": {
+    "timeout": 30000,
+    "retryAttempts": 3,
+    "retryDelay": 1000
+  }
+}
