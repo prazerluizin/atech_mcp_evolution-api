@@ -1110,3 +1110,10 @@ export class MessageTools {
     };
   }
 }
+
+// Export instance for use in tests and other modules
+export const messageTools = new MessageTools(new EvolutionHttpClient({
+  baseURL: process.env.EVOLUTION_URL || 'http://localhost',
+  globalApiKey: process.env.EVOLUTION_API_KEY || 'test-key',
+  timeout: 30000
+}));

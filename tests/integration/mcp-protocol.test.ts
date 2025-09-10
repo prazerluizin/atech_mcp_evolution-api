@@ -150,7 +150,8 @@ describe('MCP Protocol End-to-End Tests', () => {
         });
         
         const result = await createTool?.handler(TestData.instance.create);
-        expect(result.success).toBe(true);
+        expect(result).toBeDefined();
+        expect(result!.success).toBe(true);
       }
     });
 
@@ -171,7 +172,8 @@ describe('MCP Protocol End-to-End Tests', () => {
         });
         
         const result = await sendTextTool?.handler(TestData.message.text);
-        expect(result.success).toBe(true);
+        expect(result).toBeDefined();
+        expect(result!.success).toBe(true);
       }
     });
 
@@ -192,7 +194,8 @@ describe('MCP Protocol End-to-End Tests', () => {
         });
         
         const result = await createGroupTool?.handler(TestData.group.create);
-        expect(result.success).toBe(true);
+        expect(result).toBeDefined();
+        expect(result!.success).toBe(true);
       }
     });
 
@@ -251,8 +254,9 @@ describe('MCP Protocol End-to-End Tests', () => {
         });
         
         const result = await createTool?.handler(TestData.instance.create);
-        expect(result.success).toBe(false);
-        expect(result.error).toBeDefined();
+        expect(result).toBeDefined();
+        expect(result!.success).toBe(false);
+        expect(result!.error).toBeDefined();
       }
     });
 
@@ -283,8 +287,9 @@ describe('MCP Protocol End-to-End Tests', () => {
         });
         
         const result = await sendTool?.handler(TestData.message.text);
-        expect(result.success).toBe(false);
-        expect(result.error?.retryable).toBe(true);
+        expect(result).toBeDefined();
+        expect(result!.success).toBe(false);
+        expect(result!.error?.retryable).toBe(true);
       }
     });
 
@@ -320,8 +325,9 @@ describe('MCP Protocol End-to-End Tests', () => {
           where: { key: { remoteJid: 'test@c.us' } }
         });
         
-        expect(result.success).toBe(false);
-        expect(result.error?.type).toBe('RATE_LIMIT_ERROR');
+        expect(result).toBeDefined();
+        expect(result!.success).toBe(false);
+        expect(result!.error?.type).toBe('RATE_LIMIT_ERROR');
       }
     });
   });

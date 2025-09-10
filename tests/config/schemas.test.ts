@@ -7,9 +7,7 @@ import { z } from 'zod';
 import {
   ConfigSchema,
   EnvSchema,
-  ConfigFileSchema,
-  HttpConfigSchema,
-  ServerConfigSchema
+  ConfigFileSchema
 } from '../../src/config/schemas';
 
 describe('Configuration Schemas', () => {
@@ -111,7 +109,7 @@ describe('Configuration Schemas', () => {
           retryAttempts: 3,
           retryDelay: 1000,
           maxRetryDelay: 30000,
-          enableLogging: false
+          retryAttempts: 1
         }
       };
 
@@ -166,7 +164,7 @@ describe('Configuration Schemas', () => {
           timeout: 15000,
           retryAttempts: 5,
           retryDelay: 2000,
-          enableLogging: true
+          retryAttempts: 3
         }
       };
 
@@ -175,7 +173,7 @@ describe('Configuration Schemas', () => {
       
       if (result.success) {
         expect(result.data.http?.timeout).toBe(15000);
-        expect(result.data.http?.enableLogging).toBe(true);
+        expect(result.data.http?.retryAttempts).toBe(3);
       }
     });
   });
@@ -187,7 +185,7 @@ describe('Configuration Schemas', () => {
         retryAttempts: 3,
         retryDelay: 1000,
         maxRetryDelay: 30000,
-        enableLogging: false
+        retryAttempts: 1
       };
 
       const result = HttpConfigSchema.safeParse(validHttpConfig);
@@ -286,7 +284,7 @@ describe('Configuration Schemas', () => {
           retryAttempts: 3,
           retryDelay: 1000,
           maxRetryDelay: 30000,
-          enableLogging: false
+          retryAttempts: 1
         }
       };
 

@@ -9,19 +9,19 @@ import { McpError, ErrorType, ErrorSeverity } from '../../src/utils/error-handle
  * Creates a mock McpError with all required properties
  */
 export function createMockMcpError(overrides: Partial<McpError> = {}): McpError {
-  return {
-    type: ErrorType.API_ERROR,
-    message: 'Test error',
-    severity: ErrorSeverity.MEDIUM,
-    timestamp: new Date(),
-    suggestions: ['Test suggestion'],
-    retryable: false,
-    statusCode: 500,
-    code: 'TEST_ERROR',
-    details: {},
-    context: {},
-    ...overrides
-  };
+  return new McpError(
+    overrides.type || ErrorType.API_ERROR,
+    overrides.message || 'Test error',
+    {
+      code: overrides.code || 'TEST_ERROR',
+      statusCode: overrides.statusCode || 500,
+      severity: overrides.severity || ErrorSeverity.MEDIUM,
+      details: overrides.details || {},
+      suggestions: overrides.suggestions || ['Test suggestion'],
+      retryable: overrides.retryable || false,
+      context: overrides.context || {}
+    }
+  );
 }
 
 /**

@@ -1,7 +1,7 @@
 import { writeFileSync, unlinkSync, existsSync } from 'fs';
 import { resolve } from 'path';
-import { ConfigurationManager, ConfigurationError } from '../../src/config/configuration-manager.js';
-import { Config } from '../../src/config/schemas.js';
+import { ConfigurationManager, ConfigurationError } from '../../src/config/configuration-manager';
+import { Config } from '../../src/config/schemas';
 
 describe('ConfigurationManager', () => {
   let configManager: ConfigurationManager;
