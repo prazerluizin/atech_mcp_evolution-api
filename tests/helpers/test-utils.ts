@@ -3,7 +3,7 @@
  * Common utilities for testing the Evolution API MCP server
  */
 
-import { McpError, ErrorType } from '../../src/utils/error-handler';
+import { McpError, ErrorType, ErrorSeverity } from '../../src/utils/error-handler';
 
 /**
  * Creates a mock McpError with all required properties
@@ -12,7 +12,7 @@ export function createMockMcpError(overrides: Partial<McpError> = {}): McpError 
   return {
     type: ErrorType.API_ERROR,
     message: 'Test error',
-    severity: 'error',
+    severity: ErrorSeverity.MEDIUM,
     timestamp: new Date(),
     suggestions: ['Test suggestion'],
     retryable: false,

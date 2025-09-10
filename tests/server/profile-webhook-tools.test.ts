@@ -4,6 +4,7 @@
 
 import { ProfileWebhookTools } from '../../src/server/tools/profile-webhook-tools';
 import { EvolutionHttpClient, ErrorType } from '../../src/clients/evolution-http-client';
+import { createMockMcpError } from '../helpers/test-utils';
 
 // Mock the entire HTTP client module
 jest.mock('../../src/clients/evolution-http-client');
@@ -129,11 +130,11 @@ describe('ProfileWebhookTools', () => {
       const mockError = {
         success: false,
         statusCode: 404,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.API_ERROR,
           message: 'Instance not found',
           statusCode: 404
-        }
+        })
       };
       mockHttpClient.post.mockResolvedValue(mockError);
 

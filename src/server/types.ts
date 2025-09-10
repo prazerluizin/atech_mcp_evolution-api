@@ -16,6 +16,7 @@ export type ToolHandler = (params: any) => Promise<ToolResult>;
 export interface ToolResult {
   success: boolean;
   data?: any;
+  id?: any;
   error?: {
     type: string;
     message: string;

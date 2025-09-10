@@ -5,6 +5,7 @@
 import { ChatTools } from '../../src/server/tools/chat-tools';
 import { EvolutionHttpClient, ErrorType } from '../../src/clients/evolution-http-client';
 import { McpToolRegistry } from '../../src/server/tool-registry';
+import { createMockMcpError } from '../helpers/test-utils';
 
 // Mock the HTTP client
 jest.mock('../../src/clients/evolution-http-client');
@@ -248,11 +249,11 @@ describe('ChatTools Integration', () => {
       
       mockHttpClient.post.mockResolvedValue({
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.AUTHENTICATION_ERROR,
           statusCode: 401,
           message: 'Invalid API key'
-        },
+        }),
         statusCode: 401
       });
 

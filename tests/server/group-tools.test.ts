@@ -5,6 +5,7 @@
 import { GroupTools } from '../../src/server/tools/group-tools';
 import { EvolutionHttpClient, ErrorType } from '../../src/clients/evolution-http-client';
 import { ToolInfo, ToolResult } from '../../src/server/types';
+import { createMockMcpError } from '../helpers/test-utils';
 
 // Mock the HTTP client
 jest.mock('../../src/clients/evolution-http-client');
@@ -121,7 +122,7 @@ describe('GroupTools', () => {
     it('should handle API errors', async () => {
       const mockResponse = {
         success: false,
-        error: { type: ErrorType.VALIDATION_ERROR, statusCode: 400, message: 'Invalid request' },
+        error: createMockMcpError({ type: ErrorType.VALIDATION_ERROR, statusCode: 400, message: 'Invalid request' }),
         statusCode: 400
       };
       mockHttpClient.post.mockResolvedValue(mockResponse);
@@ -593,7 +594,7 @@ describe('GroupTools', () => {
     it('should handle 403 permission errors', async () => {
       const mockResponse = {
         success: false,
-        error: { type: ErrorType.AUTHENTICATION_ERROR, statusCode: 403, message: 'Permission denied' },
+        error: createMockMcpError({ type: ErrorType.AUTHENTICATION_ERROR, statusCode: 403, message: 'Permission denied' }),
         statusCode: 403
       };
       mockHttpClient.post.mockResolvedValue(mockResponse);
@@ -615,7 +616,7 @@ describe('GroupTools', () => {
     it('should handle 404 not found errors', async () => {
       const mockResponse = {
         success: false,
-        error: { type: ErrorType.NETWORK_ERROR, statusCode: 404, message: 'Not found' },
+        error: createMockMcpError({ type: ErrorType.NETWORK_ERROR, statusCode: 404, message: 'Not found' }),
         statusCode: 404
       };
       mockHttpClient.post.mockResolvedValue(mockResponse);

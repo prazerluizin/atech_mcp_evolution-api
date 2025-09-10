@@ -1,8 +1,9 @@
 {
   "name": "evolution-api-mcp",
   "version": "1.0.0",
-  "description": "MCP Server for Evolution API v2",
+  "description": "MCP Server for Evolution API v2 - Integrate WhatsApp functionality with Claude Desktop and other MCP clients",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "evolution-api-mcp": "./bin/evolution-api-mcp.js"
   },
@@ -13,24 +14,62 @@
     "dev": "tsx ./src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepublishOnly": "npm run build"
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "lint": "echo 'Linting not configured yet'",
+    "prepublishOnly": "npm run build && npm run test:ci",
+    "prepack": "npm run build",
+    "postpack": "echo 'Package created successfully'",
+    "release": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish"
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
     "evolution-api",
     "whatsapp",
-    "model-context-protocol",
-    "claude"
+    "whatsapp-api",
+    "claude",
+    "claude-desktop",
+    "ai",
+    "chatbot",
+    "messaging",
+    "api-integration",
+    "typescript",
+    "npx",
+    "automation",
+    "communication",
+    "instant-messaging"
   ],
-  "author": "",
+  "author": {
+    "name": "Evolution API MCP Team",
+    "email": "contact@evolution-api-mcp.com",
+    "url": "https://github.com/evolution-api/evolution-api-mcp"
+  },
   "license": "MIT",
+  "homepage": "https://github.com/evolution-api/evolution-api-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evolution-api/evolution-api-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/evolution-api/evolution-api-mcp/issues"
+  },
   "files": [
-    "dist",
-    "bin",
-    "README.md"
+    "dist/**/*",
+    "bin/**/*",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs/**/*"
   ],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.5",

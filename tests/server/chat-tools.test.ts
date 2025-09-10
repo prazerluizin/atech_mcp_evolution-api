@@ -4,6 +4,7 @@
 
 import { ChatTools } from '../../src/server/tools/chat-tools';
 import { EvolutionHttpClient, ErrorType } from '../../src/clients/evolution-http-client';
+import { createMockMcpError } from '../helpers/test-utils';
 
 // Mock the HTTP client
 jest.mock('../../src/clients/evolution-http-client');
@@ -101,11 +102,11 @@ describe('ChatTools', () => {
 
       mockHttpClient.post.mockResolvedValue({
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.API_ERROR,
           statusCode: 404,
           message: 'Instance not found'
-        },
+        }),
         statusCode: 404
       });
 
@@ -508,11 +509,11 @@ describe('ChatTools', () => {
 
       mockHttpClient.post.mockResolvedValue({
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.AUTHENTICATION_ERROR,
           statusCode: 401,
           message: 'Unauthorized'
-        },
+        }),
         statusCode: 401
       });
 
@@ -533,11 +534,11 @@ describe('ChatTools', () => {
 
       mockHttpClient.post.mockResolvedValue({
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.VALIDATION_ERROR,
           statusCode: 422,
           message: 'Invalid phone number format'
-        },
+        }),
         statusCode: 422
       });
 
@@ -558,11 +559,11 @@ describe('ChatTools', () => {
 
       mockHttpClient.post.mockResolvedValue({
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.RATE_LIMIT_ERROR,
           statusCode: 429,
           message: 'Too many requests'
-        },
+        }),
         statusCode: 429
       });
 

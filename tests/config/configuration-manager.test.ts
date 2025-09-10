@@ -253,7 +253,7 @@ describe('ConfigurationManager', () => {
       try {
         await configManager.loadConfig();
         fail('Should have thrown ConfigurationError');
-      } catch (error) {
+      } catch (error: any) {
         expect(error).toBeInstanceOf(ConfigurationError);
         expect(error.message).toContain('Configuration validation failed');
         expect(error.message).toContain('EVOLUTION_URL');
@@ -265,7 +265,7 @@ describe('ConfigurationManager', () => {
       try {
         await configManager.loadConfig();
         fail('Should have thrown ConfigurationError');
-      } catch (error) {
+      } catch (error: any) {
         expect(error).toBeInstanceOf(ConfigurationError);
         expect(error.message).toContain('Required: EVOLUTION_URL, EVOLUTION_API_KEY');
       }

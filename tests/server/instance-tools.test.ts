@@ -4,6 +4,7 @@
 
 import { InstanceTools } from '../../src/server/tools/instance-tools';
 import { EvolutionHttpClient, ApiResponse, ErrorType } from '../../src/clients/evolution-http-client';
+import { createMockMcpError } from '../helpers/test-utils';
 
 // Mock the HTTP client
 jest.mock('../../src/clients/evolution-http-client');
@@ -96,11 +97,11 @@ describe('InstanceTools', () => {
       const tool = instanceTools.createCreateInstanceTool();
       const mockResponse: ApiResponse = {
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.API_ERROR,
           message: 'Instance already exists',
           statusCode: 409
-        },
+        }),
         statusCode: 409
       };
 
@@ -327,11 +328,11 @@ describe('InstanceTools', () => {
       const tool = instanceTools.createCreateInstanceTool();
       const mockResponse: ApiResponse = {
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.AUTHENTICATION_ERROR,
           message: 'Invalid API key',
           statusCode: 401
-        },
+        }),
         statusCode: 401
       };
 
@@ -348,10 +349,10 @@ describe('InstanceTools', () => {
       const tool = instanceTools.createFetchInstancesTool();
       const mockResponse: ApiResponse = {
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.NETWORK_ERROR,
           message: 'Connection failed'
-        },
+        }),
         statusCode: 0
       };
 
@@ -368,10 +369,10 @@ describe('InstanceTools', () => {
       const tool = instanceTools.createConnectInstanceTool();
       const mockResponse: ApiResponse = {
         success: false,
-        error: {
+        error: createMockMcpError({
           type: ErrorType.TIMEOUT_ERROR,
           message: 'Request timeout'
-        },
+        }),
         statusCode: 0
       };
 

@@ -37,3 +37,8 @@ pids/
 *.pid
 *.seed
 *.pid.lock
+
+#kiro
+.kiro/
+.kombai/
+.claude.md
